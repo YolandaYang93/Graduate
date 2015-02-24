@@ -38,6 +38,8 @@ public class CurriculumView extends RelativeLayout{
 	private int gridWidth;
 	private int gridHeight;
 	
+	private OnCourseClickListener onCourseClickListener;
+	
 	public CurriculumView(Context context) {
 		super(context);
 		this.context = context;
@@ -83,6 +85,10 @@ public class CurriculumView extends RelativeLayout{
 	}
 	
 	
+	public void setOnCourseClickListener(OnCourseClickListener onCourseClickListener){
+		this.onCourseClickListener = onCourseClickListener;
+	}
+	
 	public void setCourseList(ArrayList<Course> courseList){
 		this.courseList = courseList;
 		for (int i = 0; i < courseList.size(); i++) {
@@ -91,8 +97,28 @@ public class CurriculumView extends RelativeLayout{
             text.setId(i);
             text.setText(course.getName());
             text.setBackground(getResources().getDrawable(R.drawable.shape_curriculum));
+            text.setOnClickListener(new CurriculumListener(i));
             
             this.addView(text);
+		}
+	}
+	
+	/**
+	 * 设置curriculum里面的监听器
+	 *
+	 */
+	protected class CurriculumListener implements OnClickListener{
+		
+		private int courseId;
+		public CurriculumListener(int courseId){
+			this.courseId = courseId;
+		}
+
+		@Override
+		public void onClick(View v) {
+			if(onCourseClickListener != null){
+				onCourseClickListener.onItemClick(courseId, v);
+			}
 		}
 	}
 	
@@ -160,6 +186,13 @@ public class CurriculumView extends RelativeLayout{
 		
 	}
 	
-	
+	/**
+	 * 每一个课程item被点击时的监听器
+	 *
+	 */
+	public interface OnCourseClickListener{
+		public void onItemClick(int courseId, View view);
+	}
+		
 
 }

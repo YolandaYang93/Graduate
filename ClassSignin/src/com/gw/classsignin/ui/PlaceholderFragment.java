@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.gw.classsignin.R;
 import com.gw.classsignin.model.Course;
 import com.gw.classsignin.widget.CurriculumView;
+import com.gw.classsignin.widget.CurriculumView.OnCourseClickListener;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -59,5 +60,12 @@ public class PlaceholderFragment extends Fragment {
 		courseList.add(new Course("2", "马克思", "1", "尹川东", 2, 1, 2));
 		courseList.add(new Course("3", "马克思", "1", "尹川东", 4, 6, 7));
 		curriculumView.setCourseList(courseList);
+		curriculumView.setOnCourseClickListener(new OnCourseClickListener() {
+			
+			@Override
+			public void onItemClick(int courseId, View view) {
+				Log.d("oncurriculumview click", "clickid:" + courseId);
+			}
+		});
 	}
 }
