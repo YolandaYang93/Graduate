@@ -1,0 +1,21 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.classsignin.MainActivity$PlaceholderFragment" >
+	
+    <ScrollView 
+        android:layout_width="match_parent"
+		android:layout_height="match_parent"
+        >
+        <com.example.classsignin.widget.CurriculumView
+            android:id="@+id/curriculum_view" 
+	        android:layout_width="match_parent"
+	        android:layout_height="500dp"
+	        android:background="@drawable/table_bg"
+	        />
+    </ScrollView>
+    
+        
+
+</RelativeLayout>
