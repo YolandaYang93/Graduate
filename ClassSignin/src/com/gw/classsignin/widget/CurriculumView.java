@@ -1,6 +1,10 @@
-package com.example.classsignin.widget;
+package com.gw.classsignin.widget;
 
-import com.example.classsignin.R;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+import com.gw.classsignin.R;
+import com.gw.classsignin.model.Course;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -25,8 +29,8 @@ public class CurriculumView extends RelativeLayout{
 	
 	private Context context;
 	
+	private ArrayList<Course> courseList;
 	private String[] headerRow = {"星期一","星期二","星期三","星期四","星期五","星期六","星期日"};
-	
 	private int courseNum;
 	
 	private int headerGridWidth;
@@ -47,18 +51,24 @@ public class CurriculumView extends RelativeLayout{
 	}
 	
 	private void init(){
-		initView();
-//		initData();
+		initPaint();
+		initParams();
+//		testView();
 	}
 	
+	private void initParams(){
+		courseNum = 13;
+		this.headerGridWidth = (int)(getMeasuredWidth() * 0.08);
+		this.headerGridHeight = (int)(getMeasuredHeight() * 0.08);
+		this.gridWidth = (getWidth() - headerGridWidth) / headerRow.length;
+		this.gridHeight = (getHeight() - headerGridHeight) / courseNum;
+	}
 
-	@SuppressLint("NewApi")
-	private void initView(){
+	private void testView(){
 		
-
 		TextView[] buts = new TextView[2];
-		for(int num=0;num<2;num++){
-            RelativeLayout.LayoutParams oParams = new RelativeLayout.LayoutParams(100,60);
+		for(int num=0;num<1;num++){
+            RelativeLayout.LayoutParams oParams = new RelativeLayout.LayoutParams(100, 100);
             buts[num] = new TextView(context);
             buts[num].setId(num+1);
             buts[num].setText("o");
@@ -72,30 +82,62 @@ public class CurriculumView extends RelativeLayout{
         }
 	}
 	
-	private void initData(){
-		courseNum = 13;
-		this.headerGridWidth = (int)(getWidth() * 0.08);
-		this.headerGridHeight = (int)(getHeight() * 0.08);
-		this.gridWidth = (getWidth() - headerGridWidth) / headerRow.length;
-		this.gridHeight = (getHeight() - headerGridHeight) / courseNum;
+	
+	public void setCourseList(ArrayList<Course> courseList){
+		this.courseList = courseList;
+		for (int i = 0; i < courseList.size(); i++) {
+			Course course = courseList.get(i);
+            TextView text = new TextView(context);
+            text.setId(i);
+            text.setText(course.getName());
+            text.setBackground(getResources().getDrawable(R.drawable.shape_curriculum));
+            
+            this.addView(text);
+		}
 	}
+	
+	private void resetPos(){
+		if(courseList == null){
+			return;
+		}
+		for (int i = 0; i < courseList.size(); i++) {
+			Course course = courseList.get(i);
+			int cheight = (course.getEndSection() - course.getStartSection() + 1) * gridHeight;
+            TextView text = (TextView) getChildAt(i);
+
+			RelativeLayout.LayoutParams oParams = new RelativeLayout.LayoutParams(gridWidth, cheight);
+            oParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+            oParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+            oParams.leftMargin = course.getWeek() * gridWidth + headerGridWidth;
+            oParams.topMargin = (course.getStartSection() - 1) * gridHeight + headerGridHeight;
+            text.setLayoutParams(oParams);
+		}
+	}
+	
+	private void initPaint(){
+		headerPaint = new Paint();
+		textPaint = new Paint();
+		sepPaint = new Paint();
+	}
+	
+	private static Paint headerPaint;
+	private static Paint textPaint;
+	private static Paint sepPaint;
 	
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		initData();
-		
-//		canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG)); 
-		Paint headerPaint = new Paint();
+		initParams();
+		resetPos();
+		//抗锯齿
+		canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG)); 
 		headerPaint.setAlpha(50);
 		canvas.drawRect(0, 0, getWidth(), headerGridHeight, headerPaint);
 		canvas.drawRect(0, headerGridHeight, headerGridWidth, getHeight(), headerPaint);
 		
-		Paint textPaint = new Paint();
 		textPaint.setColor(Color.WHITE);
 		textPaint.setTypeface(Typeface.create("微软雅黑", Typeface.BOLD));
 		
-		Paint sepPaint = new Paint();
 		sepPaint.setColor(Color.GRAY);
 		for (int i = 0; i < headerRow.length; i++) {
 			//draw number
@@ -112,6 +154,8 @@ public class CurriculumView extends RelativeLayout{
 			canvas.drawText(String.valueOf(i+1), headerGridWidth / 2 - 5, headerGridHeight + gridHeight * i + gridHeight / 2, textPaint);
 			canvas.drawLine(0, headerGridHeight + gridHeight * i, headerGridWidth - 1, headerGridHeight + gridHeight * i, sepPaint);
 		}
+		
+		
 		
 		
 	}

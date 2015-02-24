@@ -1,4 +1,7 @@
-package com.example.classsignin;
+package com.gw.classsignin.main;
+
+import com.gw.classsignin.R;
+import com.gw.classsignin.ui.PlaceholderFragment;
 
 import android.app.Activity;
 import android.app.ActionBar;
