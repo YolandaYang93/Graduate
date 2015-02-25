@@ -52,7 +52,7 @@ public class CurriculumView extends RelativeLayout{
 	
 	private void init(){
 		initPaint();
-		initParams();
+//		initParams();
 //		testView();
 	}
 	
@@ -153,13 +153,6 @@ public class CurriculumView extends RelativeLayout{
 		for (int i = 0; i < this.courseNum; i++) {
 			canvas.drawText(String.valueOf(i+1), headerGridWidth / 2 - 5, headerGridHeight + gridHeight * i + gridHeight / 2, textPaint);
 			canvas.drawLine(0, headerGridHeight + gridHeight * i, headerGridWidth - 1, headerGridHeight + gridHeight * i, sepPaint);
-		}
-		
-		
-		
-		
+		}		
 	}
-	
-	
-
 }
