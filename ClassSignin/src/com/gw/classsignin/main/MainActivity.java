@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.os.Build;
@@ -43,10 +44,20 @@ public class MainActivity extends Activity {
 		lesson_list_btn = (TextView)findViewById(R.id.lesson_list_btn);
 		sign_btn = (TextView)findViewById(R.id.sign_btn);
 		me_btn = (TextView)findViewById(R.id.me_btn);
-
+		lesson_list_btn.setOnClickListener(new MenuOnClickListener());
+		sign_btn.setOnClickListener(new MenuOnClickListener());
+		me_btn.setOnClickListener(new MenuOnClickListener());
 	}
 	
+	private class MenuOnClickListener implements OnClickListener {
 
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
 	private void initActionbar(){
 //		getActionBar().setIcon(R.drawable.drop_select);
 //		drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.nav_white, R.string.app_name, R.string.app_name){
