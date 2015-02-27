@@ -17,4 +17,21 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    
+    <style name="customTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/ActionBarTheme</item>
+        <item name="android:actionMenuTextColor">@color/blue</item>
+        <item name="android:homeAsUpIndicator">@drawable/back</item>
+    </style>
+
+    <style name="ActionBarTheme" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/white</item>
+        <item name="android:actionMenuTextColor">@color/blue</item>
+        <item name="android:titleTextStyle">@style/actionbarTitle</item>
+    </style>
+    
+    <style name="actionbarTitle">  
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/blue</item>  
+    </style>
 </resources>

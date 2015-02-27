@@ -1,7 +1,60 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
-    android:layout_width="match_parent"
+    android:layout_width="match_parent" 
     android:layout_height="match_parent"
-    tools:context="com.gw.classsignin.main.MainActivity"
-    tools:ignore="MergeRootFrame" />
+    >
+	<FrameLayout 
+	    android:id="@+id/container"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    tools:context="com.gw.classsignin.main.MainActivity"
+	    tools:ignore="MergeRootFrame"
+	    android:layout_above="@+id/main_tab"/>
+	
+	<LinearLayout
+	    android:id="@+id/main_tab" 
+	    android:layout_width="match_parent"
+	    android:layout_height="54dp"
+	    android:orientation="horizontal"
+	    android:paddingTop="4dp"
+	    android:layout_alignParentBottom="true">
+
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:id="@+id/lesson_list_btn"
+		    android:drawableTop="@drawable/selector_lesson_list_btn"
+		    android:gravity="center"
+		    android:text="课程表"
+		    android:textSize="12sp"
+		    android:textColor="@drawable/selector_menu_font" />
+
+	    <TextView 
+	        android:layout_weight="1"
+	        android:id="@+id/sign_btn"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="摇摇签到"
+	        android:textSize="12sp"
+	        android:textColor="@drawable/selector_menu_font"
+	        android:gravity="center"
+	        android:drawableTop="@drawable/selector_sign_btn"
+	        />
+	    
+	    <TextView 
+	        android:layout_weight="1"
+	        android:id="@+id/me_btn"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="我"
+	        android:textSize="12sp"
+	        android:textColor="@drawable/selector_menu_font"
+	        android:gravity="center"
+	        android:drawableTop="@drawable/selector_me_btn"
+	        />
+	    
+	    
+	</LinearLayout>
+
+</RelativeLayout>
