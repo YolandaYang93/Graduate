@@ -125,7 +125,6 @@ public final class R {
         public static final int hello_world=0x7f060002;
     }
     public static final class style {
-        public static final int ActionBarTheme=0x7f070003;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -152,7 +151,11 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f070001;
-        public static final int actionbarTitle=0x7f070004;
-        public static final int customTheme=0x7f070002;
+        public static final int CustomTheme=0x7f070002;
+        public static final int MyActionBarMenu=0x7f070005;
+        public static final int MyActionBarTheme=0x7f070003;
+        public static final int MyActionBarTitle=0x7f070004;
+        public static final int MySpinnerItem=0x7f070006;
+        public static final int MyTextAppearance=0x7f070007;
     }
 }

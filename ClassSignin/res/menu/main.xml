@@ -8,24 +8,17 @@
         android:icon="@drawable/drop_select"
         android:showAsAction="always"
         >
-        <menu 
-            
-            >
+        <menu >
             <item 
                 android:id="@+id/absent"
                 android:title="请假"
-                
                 android:icon="@drawable/absent"
-			    android:actionLayout="@layout/menu"
                 />
             <item
                 android:id="@+id/refresh"
                 android:title="刷新课程"
                 android:icon="@drawable/refresh"
-                android:actionLayout="@layout/menu"
-                
                  />
         </menu>
     </item>
-
 </menu>
